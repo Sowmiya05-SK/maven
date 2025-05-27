@@ -7,24 +7,18 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Cloning source code...'
-                checkout scm
-            }
-        }
 
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                sh 'mvn test'
+                bat 'mvn test'
             }
 
             post {
@@ -37,7 +31,7 @@ pipeline {
         stage('Package') {
             steps {
                 echo 'Packaging the application...'
-                sh 'mvn package'
+                bat 'mvn package'
             }
         }
     }
