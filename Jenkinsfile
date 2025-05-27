@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                bat 'mvn clean install'
+                bat 'mvn clean package'
             }
         }
 
@@ -21,11 +21,6 @@ pipeline {
                 bat 'mvn test'
             }
 
-            post {
-                always {
-                    junit '**/target/surefire-reports/*.xml'
-                }
-            }
         }
 
         stage('Package') {
